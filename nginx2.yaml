@@ -9,3 +9,5 @@ spec:
   containers:
   - image: nginx
     name: nginx-yaml2
+    image: nginx
+    name: nginx-yaml3
