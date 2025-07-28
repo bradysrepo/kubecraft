@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+  name: nginx-storage-pod
+spec:
+  containers:
+    - image: nginx
+      name: nginx-storage
+      volumeMounts:
+        - mountPath: /scratch
+          name: scratch-volume
+    - image: busybox
+      name: busybox-storage
+      command: ['/bin/sh', '-c']
+      args: ['sleep 2500']
+      volumeMounts:
+        - mountPath: /scratch
+          name: scratch-volume
+
+  volumes:
+    - name: scratch-volume
+      emptyDir:
+          sizeLimit: 500Mi
+
